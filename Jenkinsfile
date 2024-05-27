@@ -18,7 +18,7 @@ pipeline{
                     sh """
                     #!/bin/sh
                     docker tag django-todo-app ${env.docker_hub_credUsername}/django-todo-app:latest
-                    docker login -u ${env.docker_hub_credUsername} -p ${env.docker_hub_credPassword}
+                    docker login -u ${env.docker_hub_credUsername} -p ${env.docker_hub_credPassword} --password-stdin
                     docker push ${env.docker_hub_credUsername}/django-todo-app:latest
                     """
                 }
