@@ -13,14 +13,12 @@ pipeline {
         }
         stage("Login and Push image") {
             steps {
-                withCredentials([usernamePassword(credentialsId: "docker_hub_cred", passwordVariable: "docker_hub_credPassword", usernameVariable: "docker_hub_credUsername")]) {
-                    script {
-                        sh """
-                        docker tag django-todo-app ${docker_hub_credUsername}/django-todo-app:latest
-                        echo ${docker_hub_credPassword} | docker login -u ${docker_hub_credUsername} --password-stdin
-                        docker push ${docker_hub_credUsername}/django-todo-app:latest
-                        """
-                    }
+                withCredentials([usernamePassword(credentialsId: 'docker_hub_cred', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USERNAME')]) {
+                    sh '''
+                    docker tag django-todo-app $DOCKER_HUB_USERNAME/django-todo-app:latest
+                    echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD --password-stdin
+                    docker push $DOCKER_HUB_USERNAME/django-todo-app:latest
+                    '''
                 }
             }
         }
