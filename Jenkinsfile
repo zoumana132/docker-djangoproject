@@ -16,7 +16,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'docker_hub_cred', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USERNAME')]) {
                     sh '''
                     docker tag django-todo-app $DOCKER_HUB_USERNAME/django-todo-app:latest
-                    echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD --password-stdin
+                    docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
                     docker push $DOCKER_HUB_USERNAME/django-todo-app:latest
                     '''
                 }
