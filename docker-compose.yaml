@@ -2,6 +2,6 @@ version: '3.9'
 
 services:
   web:
-    image: neelsoni26/django-todo-app
+    image: zoum444/django-todo-app
     ports:
       - "8001:8001"
