@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage("Clone Code"){
             steps{
-                git url: "https://https://github.com/zoumana132/docker-djangoproject.git", branch: "main"
+                git url: "https://github.com/zoumana132/docker-djangoproject.git", branch: "main"
             }
         }
         stage("Build and Test") {
